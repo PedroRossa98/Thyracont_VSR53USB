@@ -35,7 +35,7 @@ if __name__ == "__main__":
     status = GPIO.Int_GPIO()
     new_p = VSR53USB.VSR53USB({"COM":'/dev/ttyUSB1',"timeout":1})
     new_p.Adj_Gas_Correctoion_Factor(1)
-    old = PPT200('/dev/ttyUSB0')
+    old = PPT200.int_com_PPT200('/dev/ttyUSB0')
     data_thread = threading.Thread(target=Mauser_pressure,args=(old,new_p,),daemon=True)
     while True:
         input_msg = input()
