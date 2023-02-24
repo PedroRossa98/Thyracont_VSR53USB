@@ -36,13 +36,12 @@ def Mauser_pressure(old, new):
         time.sleep(0.001)
     return
 
-def Save_data():
+def Save_data(f):
     global presure_old
     global presure_new
     global Stp
-    global f
     while Stp:
-        f.write(str(datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")[:-3])+"\t"+str(presure_old)+"\t"+str(presure_new))
+        f.write(str(datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")[:-3])+"\t"+str(presure_old)+"\t"+str(presure_new)+"\n\r")
         time.sleep(5)
     return
 
@@ -64,7 +63,7 @@ if __name__ == "__main__":
     data_thread = threading.Thread(target=Mauser_pressure,args=(old,new_p,),daemon=True)
     data_thread.start()
     f = init_save_file()
-    #data_collection = threading.Thread(target=Save_data,args=(),daemon=True)
+    data_collection = threading.Thread(target=Save_data,args=(f,),daemon=True)
     
     while True:
         print(presure_old)
@@ -92,8 +91,9 @@ if __name__ == "__main__":
             data_collection.start()
         elif input_msg == 'st':
             Stp = False
-        elif input_msg == 'test':
-            header(f)
+            time.sleep(2)
+            print("Closing file!\n\r")
+            f.flush()
             f.close()
         else:
             pass
