@@ -40,12 +40,12 @@ class VSR53USB:
         self.serial_COM = self.int_VSR53USB(varia["COM"],varia["timeout"])
         return  
 
-    def int_VSR53USB(COM,Timeout):
+    def int_VSR53USB(self,COM,Timeout):
         serial_VSR53USB = serial.Serial(COM, timeout=Timeout)
         return serial_VSR53USB
        
 
-    def Calculate_CS(send_to_head):
+    def Calculate_CS(self,send_to_head):
         len_msg = 0
         for char in send_to_head:
             # print (ord(char))
@@ -120,7 +120,7 @@ class VSR53USB:
         return ''
 
 def main():
-    VSR53 = VSR53USB({"COM":'COM3',"timeout":1})
+    VSR53 = VSR53USB({"COM":'/dev/ttyUSB1',"timeout":1})
     print(VSR53.Pressure_Pirani())
     print(VSR53.Pressure_Piezo())
     VSR53.Read_Sensor_Transition()
