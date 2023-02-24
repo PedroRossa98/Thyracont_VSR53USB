@@ -62,7 +62,7 @@ if __name__ == "__main__":
     data_thread = threading.Thread(target=Mauser_pressure,args=(old,new_p,),daemon=True)
     data_thread.start()
     f = init_save_file()
-    data_collection = threading.Thread(target=Save_data,args=(),daemon=True)
+    #data_collection = threading.Thread(target=Save_data,args=(),daemon=True)
     
     while True:
         print(presure_old)
