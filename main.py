@@ -33,12 +33,13 @@ def Mauser_pressure(old, new):
 
 if __name__ == "__main__":
     status = GPIO.Int_GPIO()
-    new_p = VSR53USB.VSR53USB({"COM":'/dev/ttyUSB1',"timeout":1})
+    new_p = VSR53USB.VSR53USB({"COM":'/dev/ttyUSB2',"timeout":1})
     new_p.Adj_Gas_Correctoion_Factor(1)
     old = PPT200.int_com_PPT200('/dev/ttyUSB0')
     data_thread = threading.Thread(target=Mauser_pressure,args=(old,new_p,),daemon=True)
     data_thread.start()
     while True:
+        print(presure_old)
         input_msg = input()
         print(input_msg)
         if input_msg == 'vac':
