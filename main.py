@@ -23,6 +23,8 @@ presure_old = None
 Stp = True
 print_out = False
 
+f = None
+
 def Mauser_pressure(old, new):
     global presure_old
     global presure_new
@@ -34,10 +36,11 @@ def Mauser_pressure(old, new):
         time.sleep(0.001)
     return
 
-def Save_data(f):
+def Save_data():
     global presure_old
     global presure_new
     global Stp
+    global f
     while Stp:
         f.write(str(datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")[:-3])+"\t"+str(presure_old)+"\t"+str(presure_new))
         time.sleep(5)
@@ -51,7 +54,7 @@ if __name__ == "__main__":
     f = open("Comperation_gauge.txt", "w")
     f.write("Time\tPressure Old [mbar]\tPressure New [mbar]\n\r")
     data_thread = threading.Thread(target=Mauser_pressure,args=(old,new_p,),daemon=True)
-    data_collection = threading.Thread(target=Save_data,args=(f,),daemon=True)
+    data_collection = threading.Thread(target=Save_data,args=(),daemon=True)
     data_thread.start()
     while True:
         print(presure_old)
