@@ -49,6 +49,7 @@ def Save_data():
 def init_save_file():
     f = open("Comperation_gauge.txt", "w")
     f.write("Time\tPressure Old [mbar]\tPressure New [mbar]\n\r")
+    f.flush()
     return f
 
 def header(f):
