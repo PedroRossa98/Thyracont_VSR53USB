@@ -91,5 +91,7 @@ if __name__ == "__main__":
             data_collection.start()
         elif input_msg == 'st':
             Stp = False
+        elif input_msg == 'test':
+            init_save_file()
         else:
             pass
