@@ -47,7 +47,7 @@ def Save_data():
     return
 
 def init_save_file():
-    f = open("Comperation_gauge.txt", "w")
+    f = open("Comperation_gauge.txt", "a")
     return f
 
 def header(f):
