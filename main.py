@@ -58,8 +58,6 @@ if __name__ == "__main__":
     new_p = VSR53USB.VSR53USB({"COM":'/dev/ttyUSB2',"timeout":1})
     new_p.Adj_Gas_Correctoion_Factor(1)
     old = PPT200.int_com_PPT200('/dev/ttyUSB0')
-    init_save_file()
-
     data_thread = threading.Thread(target=Mauser_pressure,args=(old,new_p,),daemon=True)
     data_thread.start()
     
