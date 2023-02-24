@@ -41,8 +41,8 @@ def Save_data(f):
     global presure_new
     global Stp
     while Stp:
-        f.write(datetime.now().strftime("%Y-%m-%d %H:%M:%S")+"\t"+str(presure_old)+"\t"+str(presure_new.decode('ascii'))+"\n")
-        time.sleep(5)
+        f.write(datetime.now().strftime("%Y-%m-%d %H:%M:%S")+"\t"+str(presure_old)+"\t"+str(float(presure_new.decode('ascii')))+"\n")
+        time.sleep(2)
     return
 
 def init_save_file():
@@ -91,7 +91,7 @@ if __name__ == "__main__":
             data_collection.start()
         elif input_msg == 'st':
             Stp = False
-            time.sleep(2)
+            time.sleep(1)
             print("Closing file!\n\r")
             f.flush()
             f.close()
