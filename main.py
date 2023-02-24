@@ -41,19 +41,16 @@ def Save_data(f):
     global presure_new
     global Stp
     while Stp:
-        f.write(datetime.now().strftime("%Y-%m-%d %H:%M:%S")+"\t"+str(presure_old)+"\t"+str(float(presure_new.decode('ascii')))+"\n")
+        f.write(datetime.now().strftime("%Y-%m-%d %H:%M:%S")+"\t"+str(float(presure_old)*100)+"\t"+str(float(presure_new.decode('ascii'))*100)+"\n")
         time.sleep(2)
     return
 
 def init_save_file():
     f = open("Comperation_gauge.txt", "w")
-    f.write("Time\tPressure Old [mbar]\tPressure New [mbar]\n")
+    f.write("Time\tPressure Old [Pa]\tPressure New [Pa]\n")
     f.flush()
     return f
 
-def header(f):
-    f.write("Time\tPressure Old [mbar]\tPressure New [mbar]\n")
-    return
 
 if __name__ == "__main__":
     status = GPIO.Int_GPIO()
