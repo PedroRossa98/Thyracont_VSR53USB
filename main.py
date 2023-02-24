@@ -41,18 +41,18 @@ def Save_data(f):
     global presure_new
     global Stp
     while Stp:
-        f.write(datetime.now().strftime("%Y-%m-%d %H:%M:%S")+"\t"+str(presure_old)+"\t"+str(presure_new))
+        f.write(datetime.now().strftime("%Y-%m-%d %H:%M:%S")+"\t"+str(presure_old)+"\t"+str(presure_new)+"\n")
         time.sleep(5)
     return
 
 def init_save_file():
     f = open("Comperation_gauge.txt", "w")
-    f.write("Time\tPressure Old [mbar]\tPressure New [mbar]\n\r")
+    f.write("Time\tPressure Old [mbar]\tPressure New [mbar]\n")
     f.flush()
     return f
 
 def header(f):
-    f.write("Time\tPressure Old [mbar]\tPressure New [mbar]\n\r")
+    f.write("Time\tPressure Old [mbar]\tPressure New [mbar]\n")
     return
 
 if __name__ == "__main__":
