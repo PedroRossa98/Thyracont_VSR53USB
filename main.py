@@ -38,7 +38,7 @@ def Save_data(f):
     global presure_old
     global presure_new
     global Stp
-    while True:
+    while Stp:
         f.write(str(datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")[:-3])+"\t"+str(presure_old)+"\t"+str(presure_new))
         time.sleep(5)
     return
