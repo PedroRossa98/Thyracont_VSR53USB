@@ -49,7 +49,7 @@ if __name__ == "__main__":
     new_p.Adj_Gas_Correctoion_Factor(1)
     old = PPT200.int_com_PPT200('/dev/ttyUSB0')
     f = open("Comperation_gauge.txt", "w")
-    f.write("Time\tPressure Old [mbar]\tPressure New [mbar]")
+    f.write("Time\tPressure Old [mbar]\tPressure New [mbar]\n\r")
     data_thread = threading.Thread(target=Mauser_pressure,args=(old,new_p,),daemon=True)
     data_collection = threading.Thread(target=Save_data,args=(f,),daemon=True)
     data_thread.start()
