@@ -92,5 +92,6 @@ if __name__ == "__main__":
             Stp = False
         elif input_msg == 'test':
             header(f)
+            f.close()
         else:
             pass
