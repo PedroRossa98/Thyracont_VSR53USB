@@ -47,6 +47,7 @@ def Save_data():
     return
 
 def init_save_file():
+    global f
     f = open("Comperation_gauge.txt", "a")
     return f
 
