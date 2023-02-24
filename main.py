@@ -20,6 +20,8 @@ ON = GPIO.ON
 
 presure_new = None
 presure_old = None
+Stp = True
+print_out = False
 
 def Mauser_pressure(old, new):
     global presure_old
@@ -27,16 +29,29 @@ def Mauser_pressure(old, new):
     while True:
         presure_old = "{:.3f}".format(PPT200.get_pressure(old))
         presure_new = new.Pressure()
+        if print_out:
+            print(presure_old)
         time.sleep(0.001)
     return
 
+def Save_data(f):
+    global presure_old
+    global presure_new
+    global Stp
+    while True:
+        f.write(str(datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")[:-3])+"\t"+str(presure_old)+"\t"+str(presure_new))
+        time.sleep(5)
+    return
 
 if __name__ == "__main__":
     status = GPIO.Int_GPIO()
     new_p = VSR53USB.VSR53USB({"COM":'/dev/ttyUSB2',"timeout":1})
     new_p.Adj_Gas_Correctoion_Factor(1)
     old = PPT200.int_com_PPT200('/dev/ttyUSB0')
+    f = open("Comperation_gauge.txt", "w")
+    f.write("Time\tPressure Old [mbar]\tPressure New [mbar]")
     data_thread = threading.Thread(target=Mauser_pressure,args=(old,new_p,),daemon=True)
+    data_collection = threading.Thread(target=Save_data,args=(f,),daemon=True)
     data_thread.start()
     while True:
         print(presure_old)
@@ -56,10 +71,13 @@ if __name__ == "__main__":
             GPIO.Inject_Gas(2, 10)
         elif input_msg == 'ar':
             GPIO.Inject_Gas(3, 10)
+        elif input_msg == 'so':
+            print_out = True
+        elif input_msg == 'sf':
+            print_out = False
         elif input_msg == 'cd':
-            print("")
+            data_collection.start()
         elif input_msg == 'st':
-            print("")
+            Stp = False
         else:
-            print(presure_old)
             pass
