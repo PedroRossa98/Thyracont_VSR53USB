@@ -47,11 +47,10 @@ def Save_data():
     return
 
 def init_save_file():
-    global f
     f = open("Comperation_gauge.txt", "w")
-    return 
+    return f
 
-def header():
+def header(f):
     f.write("Time\tPressure Old [mbar]\tPressure New [mbar]\n\r")
     return
 
@@ -62,7 +61,7 @@ if __name__ == "__main__":
     old = PPT200.int_com_PPT200('/dev/ttyUSB0')
     data_thread = threading.Thread(target=Mauser_pressure,args=(old,new_p,),daemon=True)
     data_thread.start()
-    init_save_file()
+    f = init_save_file()
     data_collection = threading.Thread(target=Save_data,args=(),daemon=True)
     
     while True:
@@ -92,6 +91,6 @@ if __name__ == "__main__":
         elif input_msg == 'st':
             Stp = False
         elif input_msg == 'test':
-            header()
+            header(f)
         else:
             pass
