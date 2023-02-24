@@ -32,7 +32,7 @@ def Mauser_pressure(old, new):
         presure_old = "{:.3f}".format(PPT200.get_pressure(old))
         presure_new = new.Pressure()
         if print_out:
-            print(presure_old)
+            print(float(presure_old)*100)
         time.sleep(0.001)
     return
 
