@@ -107,6 +107,18 @@ class VSR53USB:
 
         return self.read_VSR53USB()
 
+    def Pressure(self):
+        AC = '0'
+        CMD = 'MV'
+        LEN = '00'
+        CS = self.Calculate_CS(self.ADR+AC+CMD+LEN)
+        msg = self.ADR+AC+CMD+LEN+CS+self.CR
+        
+        self.serial_COM.write(msg.encode())
+
+        return self.read_VSR53USB()
+
+
     def Read_Sensor_Transition(self):
         AC = '0'
         CMD = 'ST'
@@ -121,10 +133,11 @@ class VSR53USB:
 
 def main():
     VSR53 = VSR53USB({"COM":'/dev/ttyUSB1',"timeout":1})
+    VSR53.Adj_Gas_Correctoion_Factor(1)
     print(VSR53.Pressure_Pirani())
     print(VSR53.Pressure_Piezo())
+    print(VSR53.Pressure())
     VSR53.Read_Sensor_Transition()
-    VSR53.Adj_Gas_Correctoion_Factor(1)
     VSR53.Read_Gas_Correctoion()
 
 
