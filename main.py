@@ -41,7 +41,7 @@ def Save_data(f):
     global presure_new
     global Stp
     while Stp:
-        f.write(datetime.now().strftime("%Y-%m-%d %H:%M:%S")+"\t"+str(presure_old)+"\t"+str(presure_new)+"\n")
+        f.write(datetime.now().strftime("%Y-%m-%d %H:%M:%S")+"\t"+str(presure_old)+"\t"+str(presure_new.decode('ascii'))+"\n")
         time.sleep(5)
     return
 
