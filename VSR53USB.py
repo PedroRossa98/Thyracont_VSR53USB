@@ -27,9 +27,9 @@ class VSR53USB:
     He = '1.0' # 2
     Ne = '1.4' # 3
 
-    Data_Correction = { "1": Ar,
-                        "2": He,
-                        "3": Ne
+    Data_Correction = { "3": Ar,
+                        "1": He,
+                        "2": Ne
     }
 
 
@@ -140,5 +140,3 @@ def main():
     VSR53.Read_Sensor_Transition()
     VSR53.Read_Gas_Correctoion()
 
-
-main()
