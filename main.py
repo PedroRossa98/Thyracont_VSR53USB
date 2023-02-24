@@ -75,11 +75,14 @@ if __name__ == "__main__":
             time.sleep(2)
             GPIO.Valve_cut_off_stat(OFF)
         elif input_msg == 'he':
-            GPIO.Inject_Gas(1, 10)
+            time_s = input()
+            GPIO.Inject_Gas(1, int(time_s))
         elif input_msg == 'xe':
-            GPIO.Inject_Gas(2, 10)
+            time_s = input()
+            GPIO.Inject_Gas(2, int(time_s))
         elif input_msg == 'ar':
-            GPIO.Inject_Gas(3, 10)
+            time_s = input()
+            GPIO.Inject_Gas(3, int(time_s))
         elif input_msg == 'so':
             print_out = True
         elif input_msg == 'sf':
