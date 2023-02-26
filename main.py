@@ -63,7 +63,7 @@ if __name__ == "__main__":
     data_collection = threading.Thread(target=Save_data,args=(f,),daemon=True)
     
     while True:
-        print(presure_old)
+        print(float(presure_old)*100)
         input_msg = input()
         print(input_msg)
         if input_msg == 'vac':
