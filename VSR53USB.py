@@ -140,3 +140,5 @@ def main():
     VSR53.Read_Sensor_Transition()
     VSR53.Read_Gas_Correctoion()
 
+main()
+
