@@ -63,6 +63,7 @@ def Save_data():
         time.sleep(0.1)
         if time_s != 0 and printing ==1:
              time_s = 0
+             printing = 0
     return
 
 def init_save_file():
