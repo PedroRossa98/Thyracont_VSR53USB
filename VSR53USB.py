@@ -132,7 +132,7 @@ class VSR53USB:
         return ''
 
 def main():
-    VSR53 = VSR53USB({"COM":'/dev/ttyUSB1',"timeout":1})
+    VSR53 = VSR53USB({"COM":'/dev/tty_pressure',"timeout":1})
     VSR53.Adj_Gas_Correctoion_Factor(1)
     print(VSR53.Pressure_Pirani())
     print(VSR53.Pressure_Piezo())
